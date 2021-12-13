@@ -27,11 +27,14 @@ document.querySelector("#dogForm").addEventListener("submit", function(event) {
 });
 
 
+
+
 const getDogs = () => {
     axios
         .get("http://localhost:8080/getAll")
         .then(res => {
             const dogs = res.data
+            getOutput.innerHTML = "";
             for (let dog of dogs) {
             const dogCol = document.createElement("div");
             dogCol.classList.add("col");
@@ -69,8 +72,19 @@ const getDogs = () => {
             dogFee.innerText = `Weekly fee: ${dog.fee}`;
             dogBody.appendChild(dogFee);
 
+            const deleteDog = document.createElement("button");
+            deleteDog.innerText = "Remove dog";
+            deleteDog.classList.add("btn", "btn-danger");
+            deleteDog.addEventListener("click", () => {
+                axios
+                    .delete(`http://localhost:8080/remove/${dog.id}`)
+                    .then(res => getDogs().window.location.reload())
+                    .catch(err => console.error(err))
+            })
+
             dogCard.appendChild(dogBody);
             dogCol.appendChild(dogCard);
+            dogBody.appendChild(deleteDog);
 
             getOutput.appendChild(dogCol);
             }
