@@ -14,6 +14,47 @@
     <link rel="stylesheet" type="css" href="./scripts/dogday.js">
 </head>
 <body>
+
+<section>
+    <h2>ADD DOG TO REGISTER</h2>
+    <form class="form-floating" id="dogForm">
+        <div class="form-floating mb-3">
+            <input type="name" class="form-control" id="floatingInput" placeholder="dog name here">
+            <label for="floatingInput">Dog name</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="breed" class="form-control" id="floatingBreed" placeholder="dog breed here">
+            <label for="floatingBreed">Dog breed</label>
+        </div>
+        <div class="form-floating mb-3">
+            <select class="form-select" id="floatingSelect" aria-label="Is friendly with other dogs?">
+                <option selected>Please select</option>
+                <option value="Yes">YES</option>
+                <option value="No">NO</option>
+            </select>
+            <label for="floatingSelect">Do they play well with other dogs?</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="number" class="form-control" id="floatingFee" placeholder="fee">
+            <label for="floatingFee">Weekly fee</label>
+        </div>
+        <div>
+            <button class="btn btn-secondary" type="reset">Reset</button>
+            <button class="btn btn-primary" type="submit">Submit</button>
+        </div>
+
+    </form>
+</section>
+
+</section>
+<div class="col"></div>
+<section>
+    <h3>Registered Dog list</h3>
+    <div id="getOutput" class="row row-cols-2 row-cols-md-4 g-4">
+
+    </div>
+      
+</section>
     
 </body>
 </html>
