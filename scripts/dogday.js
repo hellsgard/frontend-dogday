@@ -1,35 +1,10 @@
 "use strict"
 
+
+
 const getOutput = document.querySelector("#getOutput");
 
-document.querySelector("#dogForm").addEventListener("submit", function(event) {
-    event.preventDefault();
-    console.log("THIS:", this);
-    const form = this;
-
-    const data = {
-        name: form.dogName.value,
-        breed: form.dogBreed.value,
-        friendly: form.dogFriendly.value,
-        fee: form.dogFee.value,
-
-    };
-
-    axios
-        .post("http://localhost:8080/create", data)
-        .then(res => {
-            getDogs();
-            form.reset();
-
-        })
-        .catch(err => console.error(err));
-
-});
-
-
-
-
-const getDogs = () => {
+const getAllDogs = () => {
     axios
         .get("http://localhost:8080/getAll")
         .then(res => {
@@ -78,13 +53,34 @@ const getDogs = () => {
             deleteDog.addEventListener("click", () => {
                 axios
                     .delete(`http://localhost:8080/remove/${dog.id}`)
-                    .then(res => getDogs().window.location.reload())
+                    .then(res => getAllDogs().window.location.reload())
                     .catch(err => console.error(err))
             })
+
+            // const updateDogInit = document.createElement("button");
+            // updateDogInit.innerText = "update";
+            // updateDogInit.classList.add("btn", "btn-warning");
+            // updateDogInit.addEventListener("click", (id) => {
+            //     const id = form.dogId.value;
+            //     const data = {
+            //         name: form.dogName.value,
+            //         breed: form.dogBreed.value,
+            //         friendly: form.dogFriendly.value,
+            //         fee: form.dogFee.value,
+            
+            //     };
+            //     axios
+            //         .put(`http://localhost:8080/replace/${id}`)
+            //         .then(res => getAllDogs().window.location.reload())
+            //         .catch(err => console.error(err))
+                
+            // })
+ 
 
             dogCard.appendChild(dogBody);
             dogCol.appendChild(dogCard);
             dogBody.appendChild(deleteDog);
+            // dogBody.appendChild(updateDogInit);
 
             getOutput.appendChild(dogCol);
             }
@@ -92,4 +88,86 @@ const getDogs = () => {
         })
 
 }
-getDogs();
+
+
+document.querySelector("#dogForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+    console.log("THIS:", this);
+    const form = this;
+
+    const data = {
+        name: form.dogName.value,
+        breed: form.dogBreed.value,
+        friendly: form.dogFriendly.value,
+        fee: form.dogFee.value,
+
+    };
+
+    axios
+        .post("http://localhost:8080/create", data)
+        .then(res => {
+            getAllDogs();
+            form.reset();
+
+        })
+        .catch(err => console.error(err));
+
+});
+
+// document.querySelector("#dogForm").addEventListener("submit", function() {
+
+//     console.log("THIS:", this);
+//     const form = this;
+//     const id = form.dogId.value;
+//     const data = {
+//         name: form.dogName.value,
+//         breed: form.dogBreed.value,
+//         friendly: form.dogFriendly.value,
+//         fee: form.dogFee.value,
+
+//     };
+
+//     axios
+//         .put(`http://localhost:8080/replace/${id}`, data)
+//         .then(res => {
+//             getAllDogs();
+//             form.reset();
+
+//         })
+//         .catch(err => console.error(err));
+
+// });
+
+
+const updateDog = () => {
+
+    // const id = form.dogId.value;
+    const updateId = document.getElementById("updateDogId");
+
+    const data = {
+        name: document.getElementById("dogName").value,
+        breed: document.getElementById("dogBreed").value,
+        friendly: document.getElementById("dogFriendly").value,
+        fee: document.getElementById("dogFee").value,
+
+    };
+
+    axios
+        .put(`http://localhost:8080/replace/${updateId.value}`, data)
+        .then(res => {
+            getAllDogs();
+            form.reset();
+        })
+        .catch(err => console.error(err));
+
+}   
+
+getAllDogs();
+
+// document.querySelector("#dogForm").addEventListener("updateDog", updateDog);
+
+
+
+
+
+
