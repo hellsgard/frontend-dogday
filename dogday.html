@@ -28,7 +28,12 @@
 <div style="background-image: url('');">
     <style>
         div.background {
+
+        /* Can use local file paths if needed - image is included within the styles file 
+           as the host site can be slow which interrupts the rendering of the pictures */
+
           background: url(https://cdn.pixabay.com/photo/2019/07/01/18/16/dog-4310597__340.jpg) repeat;
+          /* background: url('./styles/dog_grass.jpg') repeat; */
           border: 2px solid black;
           padding-bottom: 20px;
         }
@@ -54,9 +59,7 @@
             <h1 class="display-1" style="color: rgb(14, 12, 8);">DOGGIE DAYCARE</h1>
           </div>
         </div>
-<!-- <h1 class="display-1" style="color: cornsilk;">
-    DOGGIE DAYCARE
-</h1> -->
+
 </div>
 
 
@@ -80,8 +83,6 @@
                 <label for="dogBreed">Dog breed</label>
             </div>
             <div class="form-floating mb-3">
-            <!-- <input type="text" class= "form-control" name="friendly" id="dogFriendly" placeholder="y">
-            <label for="floatingFriendly">Are they friendly with other dogs? Yes/No</label> -->
                 <select class="form-select" name="friendly" id="dogFriendly" aria-label="Is friendly with other dogs?">
                     <option selected>Please select</option>
                     <option value="Yes">YES</option>
@@ -93,18 +94,9 @@
                 <input type="number" class="form-control" name="fee" id="dogFee" placeholder="100">
                 <label for="dogFee">Weekly fee</label>
             </div>
-            <!-- <div class="form-floating mb-3">
-                <input type="number" class="form-control" name="updateDogId" id="updateDogId" placeholder="dog id here">
-                <label for="updateDogId">Existing Dog ID here (for amending only)</label>
-            </div> -->
             <div>
                 <button class="btn btn-secondary" type="reset">Reset </i></button>
                 <button class="btn btn-secondary" type="submit" id="submitForm">Submit</button>
-                <!-- <button class="btn btn-info" type="button" id="updateDogButton" onclick=updateDog()>Update</button> -->
-                <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    Launch demo modal
-                  </button> -->
-
             </div>
 
         </form>
@@ -123,31 +115,17 @@
                 <button class="btn btn-secondary" type="button" id="findBreedButton" onclick=getByBreed()>FIND</button>
                 <label for="floatingBreed">Find dogs by breed</label>
             </div>
-            <!-- <div class="form-check input-group mb-3">
-             <input class= "form-check-input" type="radio" id="dogFriendly" >
-            <label class= "form-check-label" for="floatingFriendly">Find dogs which play well with others
 
-            </label> 
-            <div class="form-check input-group mb-3"></div>
-
-                <!-- <select class="form-select" name="friendly" id="dogFriendly" aria-label="Is friendly with other dogs?">
-                    <!-- <option selected>Find dogs that play well (Yes) or not (No) with other dogs</option> -->
-                    <!-- <option value="Yes">YES</option>
-                    <option value="No">NO</option>
-                </select> --> 
-                <!-- <button class="btn btn-primary" type="button" id="findByFriendly">FIND</button>
-
-            </div>   --> 
-
-            <!-- <div class="form-floating input-group mb-3">
-                <input type="number" class="form-control" name="fee" id="dogFee" placeholder="100">
-                <button class="btn btn-primary" type="button" id="findByBreed">FIND</button>
-                <label for="floatingFee">Weekly fee</label>
-            </div> -->
             <div class="form-floating input-group mb-3">
                 <input type="number" class="form-control" name="findDogId" id="findDogId" placeholder="dog id here">
                 <button class="btn btn-secondary" type="button" id="findById" onclick=getById()>FIND</button>
                 <label for="floatingInput">Find dog by id</label>
+
+            </div>
+            <div class="form-floating input-group mb-3">
+                <input type="text" class="form-control" name="findUnfriendly" id="findUnfriendly" placeholder="filter">
+                <button class="btn btn-secondary" type="button" id="findByfriendly" onclick=getByFriendly()>FIND</button>
+                <label for="floatingInput">Filter unfriendly dogs to be separated</label>
 
             </div>
             <div>
@@ -177,17 +155,9 @@
     <p class="lead">Registered Dogs</p>
     <div id="getOutput" class="row row-cols-2 p-2 row-cols-md-4 g-4">
 
-        <!-- gy-5 g-4 -->
-
- 
-
-
     </div>
 
     <div>
-        <!-- <button type="button" class="btn btn-primary" id = "updateModal" data-bs-toggle="modal" data-bs-target="#exampleModal">
-            Launch demo modal
-          </button> -->
           
           <!-- Modal -->
           <div class="modal fade" id="updateFormModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -211,10 +181,9 @@
                     </select>
                     <label for="floatingFee">Weekly fee</label>
                     <input type="number" class="form-control" name="fee" id="updateDogFee">
-                    <label for="doggieId">ID</label>
-                    <input type="number" readonly class="form-control-plaintext" name="doggieId" id="updateDoggieId" >
+                    <label for="doggieId"></label>
+                    <input type="number" readonly class="form-control-plaintext invisible" name="doggieId" id="updateDoggieId" >
                     
-
                    </form> 
                   
                 </div>
@@ -225,7 +194,32 @@
               </div>
             </div>
           </div>
-
+        <div class="toast-container"> 
+          <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+            <div id="updateToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+              <div class="toast-header">
+                <i class= "bi bi-emoji-smile rounded me-2" alt="..."></i>
+                <strong class="me-auto">Update successful!</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+              </div>
+              <div class="toast-body">
+                Dog record updated
+              </div>
+            </div>
+          </div>
+          <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+            <div id="createToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+              <div class="toast-header">
+                <i class= "bi bi-emoji-smile rounded me-2" alt="..."></i>
+                <strong class="me-auto">Create successful!</strong>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+              </div>
+              <div class="toast-body">
+                Dog record updated
+              </div>
+            </div>
+          </div>
+        </div> 
     </div>
 
    
@@ -235,4 +229,27 @@
 
 <script src="./scripts/dogday.js"></script>
 </body>
+
+ <!-- CODE GRAVEYARD -->
+            <!-- <div class="form-check input-group mb-3">
+             <input class= "form-check-input" type="radio" id="dogFriendly" >
+            <label class= "form-check-label" for="floatingFriendly">Find dogs which play well with others
+
+            </label> 
+            <div class="form-check input-group mb-3"></div>
+
+                <-- <select class="form-select" name="friendly" id="dogFriendly" aria-label="Is friendly with other dogs?">
+                    <-- <option selected>Find dogs that play well (Yes) or not (No) with other dogs</option> -->
+                    <!-- <option value="Yes">YES</option>
+                    <option value="No">NO</option>
+                </select> --> 
+                <!-- <button class="btn btn-primary" type="button" id="findByFriendly">FIND</button>
+
+            </div>   --> 
+
+            <!-- <div class="form-floating input-group mb-3">
+                <input type="number" class="form-control" name="fee" id="dogFee" placeholder="100">
+                <button class="btn btn-primary" type="button" id="findByBreed">FIND</button>
+                <label for="floatingFee">Weekly fee</label>
+            </div> -->
 </html>

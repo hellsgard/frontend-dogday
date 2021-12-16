@@ -25,8 +25,9 @@ button {
 } */
 
 [class*="two"] {
-    /* background-image: url("https://cdn.pixabay.com/photo/2018/03/31/06/31/dog-3277416__340.jpg"); */
-    background-image: url("https://cdn.pixabay.com/photo/2019/05/07/20/44/bulldog-4187023__340.jpg");
+
+    /* background-image: url("https://cdn.pixabay.com/photo/2019/05/07/20/44/bulldog-4187023__340.jpg"); */
+    background-image: url("./bulldog.jpg");
     opacity: 0.75;
 
     /* background-image: url("https://images.pexels.com/photos/933498/pexels-photo-933498.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260");
