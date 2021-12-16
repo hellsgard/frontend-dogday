@@ -1,0 +1,67 @@
+body {
+    background-color:rgb(167, 187, 179);
+    opacity: 0.9;
+
+    /* background-image: url("https://cdn.pixabay.com/photo/2020/03/31/19/20/dog-4988985__340.jpg");
+    background-repeat: no-repeat; */
+
+    /* background-image: url("https://images.pexels.com/photos/933498/pexels-photo-933498.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260");
+    opacity: 0.5; */
+}
+h1 {
+    background-color:rgb(137, 211, 211);
+    text-align: center;
+
+
+}
+button {
+    color: darkgoldenrod;
+}
+
+
+
+/* [class*="two"] {
+    background-color: cornsilk;
+} */
+
+[class*="two"] {
+
+    /* background-image: url("https://cdn.pixabay.com/photo/2019/05/07/20/44/bulldog-4187023__340.jpg"); */
+    background-image: url("./bulldog.jpg");
+    opacity: 0.75;
+
+    /* background-image: url("https://images.pexels.com/photos/933498/pexels-photo-933498.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260");
+    opacity: 0.5; */
+    
+    
+}
+
+[class*="container-md"] {
+    padding-top: 10px;
+}
+
+[class*="form-control"] {
+    background-color: rgb(240, 236, 221);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+[class*="form-select"] {
+    background-color:  rgb(240, 236, 221);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+[class*="two"] {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    text-align: left;
+    color: rgb(240, 238, 233);
+}
+
+[class*="button"] {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+[class*="lead"] {
+    padding-top: 40px;
+    padding-left: 20px;
+}
+
